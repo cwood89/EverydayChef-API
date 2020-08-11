@@ -1,4 +1,4 @@
-package com.everydaychef.main.controller;
+package com.everydaychef.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
