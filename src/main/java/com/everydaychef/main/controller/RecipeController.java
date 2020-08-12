@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
@@ -19,6 +20,7 @@ public class RecipeController {
 
   @GetMapping("/")
   public String greeting() {
+    // put documentation here
     return "Hello World";
   }
 
@@ -28,5 +30,11 @@ public class RecipeController {
     return apiService.getRecipes(search);
     // // hit our WINdb for recipes
     // // send all of it
+  }
+
+  @PostMapping("/recipes")
+  public Recipe saveRecipe(Recipe recipe) {
+
+    return apiService.saveRecipe(recipe);
   }
 }
