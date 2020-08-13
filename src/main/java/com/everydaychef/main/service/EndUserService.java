@@ -15,7 +15,7 @@ public class EndUserService {
 
   public EndUser signup(@Valid EndUser endUser, BindingResult bindingResult) {
     // check to see if user exists
-    EndUser userExists = endUserRepository.findByUsername(endUser.getUserName());
+    EndUser userExists = endUserRepository.findByUserName(endUser.getUserName());
 
     if (userExists != null) {
       bindingResult.rejectValue("username", "error.user", "Username is already taken");
@@ -23,6 +23,6 @@ public class EndUserService {
     if (!bindingResult.hasErrors()) {
       endUserRepository.save(endUser);
     }
-    return endUserRepository.findByUsername(endUser.getUserName());
+    return endUserRepository.findByUserName(endUser.getUserName());
   }
 }
