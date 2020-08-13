@@ -18,7 +18,7 @@ public class EndUserService {
     EndUser userExists = endUserRepository.findByUserName(endUser.getUserName());
 
     if (userExists != null) {
-      bindingResult.rejectValue("username", "error.user", "Username is already taken");
+      bindingResult.rejectValue("userName", "error.user", "Username is already taken");
     }
     if (!bindingResult.hasErrors()) {
       endUserRepository.save(endUser);
