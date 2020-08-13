@@ -1,6 +1,7 @@
 package com.everydaychef.main.controller;
 
 import com.everydaychef.main.model.EndUser;
+import com.everydaychef.main.model.Response;
 import com.everydaychef.main.service.EndUserService;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class EndUserController {
   private EndUserService apiService;
 
   @PostMapping("/signup")
-  public EndUser signup(@RequestBody EndUser endUser, BindingResult bindingResult) {
+  public Response signup(@RequestBody EndUser endUser, BindingResult bindingResult) {
     return apiService.signup(endUser, bindingResult);
   }
 
