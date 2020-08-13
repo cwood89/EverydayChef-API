@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,8 +20,8 @@ public class EndUserController {
   private EndUserService apiService;
 
   @PostMapping("/signup")
-  public EndUser signup(@RequestBody EndUser endUser) {
-    return apiService.signup(endUser);
+  public EndUser signup(@RequestBody EndUser endUser, BindingResult bindingResult) {
+    return apiService.signup(endUser, bindingResult);
   }
 
   @PostMapping("/login")
