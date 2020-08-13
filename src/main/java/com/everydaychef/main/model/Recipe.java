@@ -12,14 +12,14 @@ public class Recipe {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  public String publisher;
-  public String title;
-  public String[] ingredients;
-  public String source_url;
-  public String recipe_id;
-  public String image_url;
-  public double social_rank;
-  public String publisher_url;
+  private String publisher;
+  private String title;
+  private String[] ingredients;
+  private String source_url;
+  private String recipe_id;
+  private String image_url;
+  private double social_rank;
+  private String publisher_url;
 
   public Recipe(String publisher, String title, String source_url, String recipe_id, String image_url,
       double social_rank, String publisher_url) {
