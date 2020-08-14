@@ -65,16 +65,22 @@ public class EndUserService {
     EndUser userByName = endUserRepository.findByUserName(endUser.getUserName());
     EndUser userByEmail = endUserRepository.findByEmail(endUser.getEmail());
 
-    if (userByName == null && userByEmail == null) {
-      return new Response("error", "User doesn't exist.", null);
-    }
+    if (userByName != null) {
+      if (userByName.getPassword().equals(endUser.getPassword())) {
+        return new Response("success", "Login successful.", userByName.getId());
+      } else {
+        return new Response("error", "Invalid password.", null);
+      }
 
-    if (userByName.getPassword().equals(endUser.getPassword())) {
-      return new Response("success", "Login successful.", userByName.getId());
-    } else if (userByEmail.getPassword().equals(endUser.getPassword())) {
-      return new Response("success", "Login successful.", userByEmail.getId());
+    } else if (userByEmail != null) {
+      if (userByEmail.getPassword().equals(endUser.getPassword())) {
+        return new Response("success", "Login successful.", userByEmail.getId());
+      } else {
+        return new Response("error", "Invalid password.", null);
+      }
+
     } else {
-      return new Response("error", "Invalid password.", null);
+      return new Response("error", "User doesn't exist.", null);
     }
 
   }
