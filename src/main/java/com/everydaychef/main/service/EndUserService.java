@@ -62,17 +62,16 @@ public class EndUserService {
 
   public Response login(EndUser endUser) {
 
-    EndUser userByName = endUserRepository.findByUserName(endUser.getUserName());
-    EndUser userByEmail = endUserRepository.findByEmail(endUser.getEmail());
-
-    if (userByName != null) {
+    if (endUser.getUserName() != null) {
+      EndUser userByName = endUserRepository.findByUserName(endUser.getUserName());
       if (userByName.getPassword().equals(endUser.getPassword())) {
         return new Response("success", "Login successful.", userByName.getId());
       } else {
         return new Response("error", "Invalid password.", null);
       }
 
-    } else if (userByEmail != null) {
+    } else if (endUser.getEmail() != null) {
+      EndUser userByEmail = endUserRepository.findByEmail(endUser.getEmail());
       if (userByEmail.getPassword().equals(endUser.getPassword())) {
         return new Response("success", "Login successful.", userByEmail.getId());
       } else {
