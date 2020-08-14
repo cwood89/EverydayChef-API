@@ -64,24 +64,30 @@ public class EndUserService {
 
     if (endUser.getUserName() != null) {
       EndUser userByName = endUserRepository.findByUserName(endUser.getUserName());
-      System.out.println(userByName);
-      if (userByName != null && userByName.getPassword().equals(endUser.getPassword())) {
-        return new Response("success", "Login successful.", userByName.getId());
+      if (userByName != null) {
+        if (userByName.getPassword().equals(endUser.getPassword())) {
+          return new Response("success", "Login successful.", userByName.getId());
+        } else {
+          return new Response("error", "Invalid password.", null);
+        }
       } else {
-        return new Response("error", "Invalid password.", null);
+        return new Response("error", "Invalid user name.", null);
       }
 
     } else if (endUser.getEmail() != null) {
       EndUser userByEmail = endUserRepository.findByEmail(endUser.getEmail());
-      System.out.println(userByEmail);
-      if (userByEmail != null && userByEmail.getPassword().equals(endUser.getPassword())) {
-        return new Response("success", "Login successful.", userByEmail.getId());
+      if (userByEmail != null) {
+        if (userByEmail.getPassword().equals(endUser.getPassword())) {
+          return new Response("success", "Login successful.", userByEmail.getId());
+        } else {
+          return new Response("error", "Invalid password.", null);
+        }
       } else {
-        return new Response("error", "Invalid password.", null);
+        return new Response("error", "Invalid email.", null);
       }
 
     } else {
-      return new Response("error", "User doesn't exist.", null);
+      return new Response("error", "Please enter a username or email.", null);
     }
 
   }
