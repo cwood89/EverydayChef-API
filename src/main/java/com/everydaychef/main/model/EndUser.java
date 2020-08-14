@@ -36,12 +36,9 @@ public class EndUser {
   private String email;
 
   @NotNull(message = "Please provide a password")
-  @Length(min = 5, message = "Your password must have at least 5 characters")
-
-  @JsonProperty(access = Access.WRITE_ONLY)
   private String password;
 
-  private Recipe[] favorites;
+  private Recipe[] favorites; // array of strings containing recipe ids.
 
   public EndUser() {
   }
