@@ -30,4 +30,9 @@ public class EndUserController {
     return apiService.login(endUser);
   }
 
+  @GetMapping("/logout")
+  public Response logout() {
+    return apiService.logout();
+  }
+
 }

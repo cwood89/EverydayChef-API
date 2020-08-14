@@ -1,6 +1,8 @@
 package com.everydaychef.main.service;
 
 import org.apache.commons.validator.routines.EmailValidator;
+import org.apache.logging.log4j.message.Message;
+
 import javax.validation.Valid;
 import com.everydaychef.main.model.EndUser;
 import com.everydaychef.main.model.Response;
@@ -71,7 +73,7 @@ public class EndUserService {
           return new Response("error", "Invalid password.", null);
         }
       } else {
-        return new Response("error", "Invalid user name.", null);
+        return new Response("error", "Invalid username.", null);
       }
 
     } else if (endUser.getEmail() != null) {
@@ -90,5 +92,9 @@ public class EndUserService {
       return new Response("error", "Please enter a username or email.", null);
     }
 
+  }
+
+  public Response logout() {
+    return new Response("success", "Logged out.", null);
   }
 }
