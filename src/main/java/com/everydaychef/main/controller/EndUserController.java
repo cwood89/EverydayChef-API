@@ -26,8 +26,8 @@ public class EndUserController {
   }
 
   @PostMapping("/login")
-  public boolean login() {
-    return false;
+  public Response login(@RequestBody EndUser endUser) {
+    return apiService.login(endUser);
   }
 
 }

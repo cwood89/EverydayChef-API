@@ -59,4 +59,20 @@ public class EndUserService {
 
     return new Response("success", "Your account has been created.", savedUser.getId());
   }
+
+  public Response login(EndUser endUser) {
+
+    EndUser userByName = endUserRepository.findByUserName(endUser.getUserName());
+    EndUser userByEmail = endUserRepository.findByEmail(endUser.getEmail());
+
+    if (userByName == null && userByEmail == null) {
+      return new Response("error", "User doesn't exist.", null);
+    }
+
+    if (userByName != null) {
+      return new Response("success", "Login successful.", userByName.getId());
+    }
+
+    return new Response("success", "Login successful.", userByEmail.getId());
+  }
 }
