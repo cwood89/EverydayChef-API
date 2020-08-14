@@ -1,10 +1,12 @@
 package com.everydaychef.main.service;
 
 import org.apache.commons.validator.routines.EmailValidator;
-import org.apache.logging.log4j.message.Message;
+
+import java.util.Optional;
 
 import javax.validation.Valid;
 import com.everydaychef.main.model.EndUser;
+import com.everydaychef.main.model.Favorite;
 import com.everydaychef.main.model.Response;
 import com.everydaychef.main.repository.EndUserRepository;
 
@@ -96,5 +98,20 @@ public class EndUserService {
 
   public Response logout() {
     return new Response("success", "Logged out.", null);
+  }
+
+  public Response saveFavorite(Favorite favorite) {
+    // get user
+    Long userId = favorite.getUserId();
+    if (userId != null) {
+      Optional<EndUser> findUser = endUserRepository.findById(userId);
+      if (findUser.isPresent()) {
+        EndUser user = findUser.get();
+
+      }
+
+    }
+    // add recipe id to favorite array
+    return new Response("success", "You liked this recipe.", null);
   }
 }
