@@ -1,6 +1,7 @@
 package com.everydaychef.main.controller;
 
 import com.everydaychef.main.model.ApiRecipe;
+import com.everydaychef.main.model.Recipe;
 
 import com.everydaychef.main.service.RecipeService;
 
@@ -27,15 +28,15 @@ public class RecipeController {
 
   @GetMapping("/recipes")
   public List<ApiRecipe> recipes(@RequestParam(value = "q", required = true) String search) {
-    // // hit the api forkify
+
     return apiService.getRecipes(search);
     // // hit our WINdb for recipes
     // // send all of it
   }
 
-  // @PostMapping("/recipes")
-  // public Recipe saveRecipe(Recipe recipe) {
+  @PostMapping("/recipes")
+  public Recipe saveRecipe(Recipe recipe) {
 
-  // return apiService.saveRecipe(recipe);
-  // }
+    return apiService.saveRecipe(recipe);
+  }
 }
