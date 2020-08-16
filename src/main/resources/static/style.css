@@ -11,7 +11,7 @@ html {
 body {
   font-size: 1.6rem;
   font-family: 'Lato', sans-serif;
-  background-color: #fffff2;
+  background-color: #e6f0ff;
   color: #2a3439;
 }
 
@@ -66,7 +66,7 @@ td {
 }
 
 code {
-  background-color: #ffd08a;
+  background-color:rgba(116,201,49, 0.6);
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
