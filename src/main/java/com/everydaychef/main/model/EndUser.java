@@ -1,7 +1,7 @@
 package com.everydaychef.main.model;
 
-import java.util.ArrayList;
-import java.util.List;
+// import java.util.ArrayList;
+// import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,20 +38,19 @@ public class EndUser {
   @NotNull(message = "Please provide a password")
   private String password;
 
-  private List<String> favorites; // array of strings containing recipe ids.
+  // private List<String> favorites; // array of strings containing recipe ids.
 
   public EndUser() {
   }
 
-  public EndUser(Long id, String firstName, String lastName, String userName, String email, String password,
-      String[] favorites) {
+  public EndUser(Long id, String firstName, String lastName, String userName, String email, String password) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.userName = userName;
     this.email = email;
     this.password = password;
-    this.favorites = new ArrayList<String>();
+    // this.favorites = favorites;
   }
 
   public String getFirstName() {
@@ -94,17 +93,17 @@ public class EndUser {
     this.password = password;
   }
 
-  public List<String> getFavorites() {
-    return favorites;
-  }
+  // public List<String> getFavorites() {
+  // return favorites;
+  // }
 
-  public void setFavorites(List<String> favorites) {
-    this.favorites = favorites;
-  }
+  // public void setFavorites(List<String> favorites) {
+  // this.favorites = favorites;
+  // }
 
-  public boolean addFavorite(String favorite) {
-    return this.favorites.add(favorite);
-  }
+  // public boolean addFavorite(String favorite) {
+  // return this.favorites.add(favorite);
+  // }
 
   public Long getId() {
     return id;
