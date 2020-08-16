@@ -14,15 +14,18 @@ public class Recipe {
 
   private String label;
   private String image;
+  private String source;
   private String url;
   private Double yield;
   private Double totalTime;
   private String[] ingredientLines;
 
-  public Recipe(String label, String image, String url, Double yield, Double totalTime, String[] ingredientLines) {
+  public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,
+      String[] ingredientLines) {
     this.label = label;
     this.image = image;
     this.url = url;
+    this.source = source;
     this.yield = yield;
     this.totalTime = totalTime;
     this.ingredientLines = ingredientLines;
@@ -81,6 +84,14 @@ public class Recipe {
 
   public Long getId() {
     return id;
+  }
+
+  public String getSource() {
+    return source;
+  }
+
+  public void setSource(String source) {
+    this.source = source;
   }
 
 }
