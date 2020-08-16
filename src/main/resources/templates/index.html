@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everyday Chef API Docs</title>
+  <script src="https://developer.edamam.com/attribution/badge.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Everyday API Documentation</h1>
+    <p class="description">This is the backend API for the Everyday Chef app.</p>
+    <h4>Important details:</h4>
+    <ul>
+      <li>Uses Edamam API for recipe data.</li>
+      <li>
+        <div id="edamam-badge" data-color="white"></div>
+      </li>
+    </ul>
+
+
+    <div class="divider"></div>
+
+    <h2>Search</h2>
+    <p class="description">Returns a list of recipes for a specific query</p>
+    <p>Path: <code>https://forkify-api.herokuapp.com/api/search</code></p>
+    <h3>Parameters</h3>
+    <table>
+      <tr>
+        <th>Parameter</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>q</td>
+        <td>Yes</td>
+        <td>Query text. For example <span class="highlighted-text">q=pizza</span>. See the list of all available queries
+          🡒 <a href="./phrases.html" class="search-queries-link">search queries</a></td>
+      </tr>
+    </table>
+    <p>Example URL: <code>https://forkify-api.herokuapp.com/api/search?q=pizza</code></p>
+
+    <div class="divider"></div>
+
+    <h2>Get</h2>
+    <p class="description">Returns the details about a specific recipe</p>
+    <p>Path: <code>https://forkify-api.herokuapp.com/api/get</code></p>
+    <h3>Parameters</h3>
+    <table>
+      <tr>
+        <th>Parameter</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>rId</td>
+        <td>Yes</td>
+        <td>Recipe id. For example <span class="highlighted-text">rId=47746</span></td>
+      </tr>
+    </table>
+    <p>Example URL: <code>https://forkify-api.herokuapp.com/api/get?rId=47746</code></p>
+  </div>
+
+  <div class="divider"></div>
+
+</body>
+
+
+</html>

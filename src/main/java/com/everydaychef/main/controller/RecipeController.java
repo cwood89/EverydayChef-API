@@ -24,7 +24,7 @@ public class RecipeController {
   @GetMapping("/")
   public String greeting() {
     // put documentation here
-    return "Hello World";
+    return "index";
   }
 
   @GetMapping("/recipes")
