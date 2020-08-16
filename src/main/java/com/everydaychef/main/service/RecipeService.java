@@ -3,6 +3,7 @@ package com.everydaychef.main.service;
 import java.util.Arrays;
 import java.util.List;
 
+import com.everydaychef.main.model.ApiRecipe;
 import com.everydaychef.main.model.Recipe;
 import com.everydaychef.main.model.RecipeResponse;
 import com.everydaychef.main.repository.RecipeRepository;
@@ -27,13 +28,15 @@ public class RecipeService {
   @Value("${api_key}")
   public String apiKey;
 
-  public List<Recipe> getRecipes(String search) {
+  public List<ApiRecipe> getRecipes(String search) {
 
-    String query = recipeUrl + "app_id=" + apiId + "&app_key=" + apiKey + "&q=" + search;
+    String query = recipeUrl + "app_id=" + apiId + "&app_key=" + apiKey + "&to=50&q=" + search;
     System.out.println(query);
     RestTemplate restTemplate = new RestTemplate();
     RecipeResponse recipes = restTemplate.getForObject(query, RecipeResponse.class);
-    return Arrays.asList(recipes.getRecipes());
+    List<ApiRecipe> hits = Arrays.asList(recipes.getHits());
+
+    return hits;
   }
 
   public Recipe saveRecipe(Recipe newRecipe) {

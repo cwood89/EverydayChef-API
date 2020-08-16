@@ -12,91 +12,75 @@ public class Recipe {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String publisher;
-  private String title;
-  private String[] ingredients;
-  private String source_url;
-  private String recipe_id;
-  private String image_url;
-  private double social_rank;
-  private String publisher_url;
+  private String label;
+  private String image;
+  private String url;
+  private Double yield;
+  private Double totalTime;
+  private String[] ingredientLines;
 
-  public Recipe(String publisher, String title, String source_url, String recipe_id, String image_url,
-      double social_rank, String publisher_url) {
-    this.publisher = publisher;
-    this.title = title;
-    this.source_url = source_url;
-    this.recipe_id = recipe_id;
-    this.image_url = image_url;
-    this.social_rank = social_rank;
-    this.publisher_url = publisher_url;
+  public Recipe(String label, String image, String url, Double yield, Double totalTime, String[] ingredientLines) {
+    this.label = label;
+    this.image = image;
+    this.url = url;
+    this.yield = yield;
+    this.totalTime = totalTime;
+    this.ingredientLines = ingredientLines;
   }
 
   public Recipe() {
   }
 
-  public String getPublisher() {
-    return publisher;
+  public String getLabel() {
+    return label;
   }
 
-  public void setPublisher(String publisher) {
-    this.publisher = publisher;
+  public void setLabel(String label) {
+    this.label = label;
   }
 
-  public String getTitle() {
-    return title;
+  public String getImage() {
+    return image;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setImage(String image) {
+    this.image = image;
   }
 
-  public String getSource_url() {
-    return source_url;
+  public String getUrl() {
+    return url;
   }
 
-  public void setSource_url(String source_url) {
-    this.source_url = source_url;
+  public void setUrl(String url) {
+    this.url = url;
   }
 
-  public String getRecipe_id() {
-    return recipe_id;
+  public Double getYield() {
+    return yield;
   }
 
-  public void setRecipe_id(String recipe_id) {
-    this.recipe_id = recipe_id;
+  public void setYield(Double yield) {
+    this.yield = yield;
   }
 
-  public String getImage_url() {
-    return image_url;
+  public Double getTotalTime() {
+    return totalTime;
   }
 
-  public void setImage_url(String image_url) {
-    this.image_url = image_url;
+  public void setTotalTime(Double totalTime) {
+    this.totalTime = totalTime;
   }
 
-  public double getSocial_rank() {
-    return social_rank;
+  public String[] getIngredientLines() {
+    return ingredientLines;
   }
 
-  public void setSocial_rank(double social_rank) {
-    this.social_rank = social_rank;
+  public void setIngredientLines(String[] ingredientLines) {
+    this.ingredientLines = ingredientLines;
   }
 
-  public String getPublisher_url() {
-    return publisher_url;
-  }
-
-  public void setPublisher_url(String publisher_url) {
-    this.publisher_url = publisher_url;
-  }
-
-  public String[] getIngredients() {
-    return ingredients;
-  }
-
-  public void setIngredients(String[] ingredients) {
-    this.ingredients = ingredients;
+  public Long getId() {
+    return id;
   }
 
 }
