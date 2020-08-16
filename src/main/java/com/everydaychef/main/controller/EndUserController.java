@@ -36,9 +36,9 @@ public class EndUserController {
     return apiService.logout();
   }
 
-  @PostMapping("/favorites")
-  public Response saveFavorite(@RequestBody Favorite favorite) {
-    return apiService.saveFavorite(favorite);
-  }
+  // @PostMapping("/favorites")
+  // public Response saveFavorite(@RequestBody Favorite favorite) {
+  // return apiService.saveFavorite(favorite);
+  // }
 
 }

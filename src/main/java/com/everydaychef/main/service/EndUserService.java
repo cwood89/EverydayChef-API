@@ -100,18 +100,17 @@ public class EndUserService {
     return new Response("success", "Logged out.", null);
   }
 
-  public Response saveFavorite(Favorite favorite) {
-    // get user
-    Long userId = favorite.getUserId();
-    if (userId != null) {
-      Optional<EndUser> findUser = endUserRepository.findById(userId);
-      if (findUser.isPresent()) {
-        EndUser user = findUser.get();
+  // public Response saveFavorite(Favorite favorite) {
+  // // get user
+  // Long userId = favorite.getUserId();
+  // if (userId != null) {
+  // Optional<EndUser> findUser = endUserRepository.findById(userId);
+  // if (findUser.isPresent()) {
+  // EndUser user = findUser.get();
+  // }
 
-      }
-
-    }
-    // add recipe id to favorite array
-    return new Response("success", "You liked this recipe.", null);
-  }
+  // }
+  // // add recipe id to favorite array
+  // return new Response("success", "You liked this recipe.", null);
+  // }
 }
