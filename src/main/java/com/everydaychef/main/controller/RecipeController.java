@@ -21,12 +21,6 @@ public class RecipeController {
   @Autowired
   private RecipeService apiService;
 
-  @GetMapping("/")
-  public String greeting() {
-    // put documentation here
-    return "index";
-  }
-
   @GetMapping("/recipes")
   public List<ApiRecipe> recipes(@RequestParam(value = "q", required = true) String search) {
 
