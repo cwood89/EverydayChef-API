@@ -13,22 +13,21 @@
 <body>
 
   <div class="container">
-    <h1>Everyday API Documentation</h1>
+    <h1>Everyday Chef API Documentation</h1>
     <p class="description">This is the backend API for the Everyday Chef app.</p>
     <h4>Important details:</h4>
     <ul>
       <li>Uses Edamam API for recipe data.</li>
-      <li>
-        <div id="edamam-badge" data-color="white"></div>
-      </li>
     </ul>
+
+    <div id="edamam-badge" data-color="white"></div>
 
 
     <div class="divider"></div>
 
     <h2>Search</h2>
     <p class="description">Returns a list of recipes for a specific query</p>
-    <p>Path: <code>https://forkify-api.herokuapp.com/api/search</code></p>
+    <p>Path: <code>https://everydaychef-api.herokuapp.com/recipes</code></p>
     <h3>Parameters</h3>
     <table>
       <tr>
@@ -39,17 +38,16 @@
       <tr>
         <td>q</td>
         <td>Yes</td>
-        <td>Query text. For example <span class="highlighted-text">q=pizza</span>. See the list of all available queries
-          🡒 <a href="./phrases.html" class="search-queries-link">search queries</a></td>
+        <td>Query text. For example <span class="highlighted-text">q=tacos</span></td>
       </tr>
     </table>
-    <p>Example URL: <code>https://forkify-api.herokuapp.com/api/search?q=pizza</code></p>
+    <p>Example URL: <code>https://everydaychef-api.herokuapp.com/recipes?q=tacos</code></p>
 
     <div class="divider"></div>
 
-    <h2>Get</h2>
-    <p class="description">Returns the details about a specific recipe</p>
-    <p>Path: <code>https://forkify-api.herokuapp.com/api/get</code></p>
+    <h2>Post</h2>
+    <p class="description">Create a new recipe to add to the database.</p>
+    <p>Path: <code>https://everydaychef-api.herokuapp.com/recipes</code></p>
     <h3>Parameters</h3>
     <table>
       <tr>
@@ -58,12 +56,59 @@
         <th>Description</th>
       </tr>
       <tr>
-        <td>rId</td>
+        <td>label</td>
         <td>Yes</td>
-        <td>Recipe id. For example <span class="highlighted-text">rId=47746</span></td>
+        <td>Title of recipe. For example <span class="highlighted-text">label=Fish Tacos</span></td>
+      </tr>
+      <tr>
+        <td>image</td>
+        <td>Yes</td>
+        <td>Image URL for displaying on client. For example <span
+            class="highlighted-text">image=https://www.edamam.com/web-img/b3a/b3ac43e915f8a866a939e809f551eb3c.jpg</span>
+        </td>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td>No</td>
+        <td>Url for original recipe source. For example <span
+            class="highlighted-text">url=http://www.lottieanddoof.com/2009/07/picadillo/</span>
+        </td>
+      </tr>
+      <tr>
+        <td>yield</td>
+        <td>No</td>
+        <td>The number of servings. For example <span class="highlighted-text">yield=3.5</span>
+        </td>
+      </tr>
+      <tr>
+        <td>totalTime</td>
+        <td>No</td>
+        <td>The amount of time to cook recipe in hours. For example <span class="highlighted-text">totalTime=1.5</span>
+        </td>
+      </tr>
+      <tr>
+        <td>ingredientLines</td>
+        <td>Yes</td>
+        <td>An array of required ingredients.
+        </td>
       </tr>
     </table>
-    <p>Example URL: <code>https://forkify-api.herokuapp.com/api/get?rId=47746</code></p>
+    <p>Example Post Body:
+      <code>
+        {
+          "label": "Fish Tacos",
+          "image": "https://www.edamam.com/web-img/b3a/b3ac43e915f8a866a939e809f551eb3c.jpg",
+          "url": "http://www.lottieanddoof.com/2009/07/picadillo/",
+          "yield": 3.0,
+          "totalTime": 1.5,
+          "ingredientLines": [
+          "Fresh Talipa",
+          "Flour Tortillas",
+          "Salsa"
+          ]
+        }
+      </code>
+    </p>
   </div>
 
   <div class="divider"></div>
