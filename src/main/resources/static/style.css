@@ -84,7 +84,7 @@ code {
 }
 
 .highlighted-text {
-  background-color: #ffd08a;
+  background-color: rgba(116,201,49, 0.6);
   padding: 0.2rem;
   border-radius: 0.5rem;
 }
