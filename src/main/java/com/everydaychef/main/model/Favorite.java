@@ -25,7 +25,8 @@ public class Favorite {
 
   public String recipeId;
 
-  public Favorite(EndUser user, String recipeId) {
+  public Favorite(Long id, EndUser user, String recipeId) {
+    this.id = id;
     this.user = user;
     this.recipeId = recipeId;
   }
