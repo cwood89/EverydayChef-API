@@ -11,7 +11,7 @@ public class Recipe {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
+  private String recipeId;
   private String label;
   private String image;
   private String source;
@@ -20,8 +20,9 @@ public class Recipe {
   private Double totalTime;
   private String[] ingredientLines;
 
-  public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,
+  public Recipe(String uri, String label, String image, String source, String url, Double yield, Double totalTime,
       String[] ingredientLines) {
+    this.recipeId = this.parseId(uri);
     this.label = label;
     this.image = image;
     this.url = url;
@@ -92,6 +93,12 @@ public class Recipe {
 
   public void setSource(String source) {
     this.source = source;
+  }
+
+  public String parseId(String uri) {
+    String delimits = "[_]+";
+    String[] tokens = uri.split(delimits);
+    return tokens[1];
   }
 
 }
