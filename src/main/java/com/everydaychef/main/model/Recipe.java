@@ -101,4 +101,12 @@ public class Recipe {
     return tokens[1];
   }
 
+  public String getRecipeId() {
+    return recipeId;
+  }
+
+  public void setRecipeId(String recipeId) {
+    this.recipeId = recipeId;
+  }
+
 }
