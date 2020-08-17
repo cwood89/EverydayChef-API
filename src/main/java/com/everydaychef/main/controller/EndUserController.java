@@ -1,7 +1,7 @@
 package com.everydaychef.main.controller;
 
 import com.everydaychef.main.model.EndUser;
-import com.everydaychef.main.model.Favorite;
+import com.everydaychef.main.model.FavoriteRequest;
 import com.everydaychef.main.model.Response;
 import com.everydaychef.main.service.EndUserService;
 
@@ -36,9 +36,9 @@ public class EndUserController {
     return apiService.logout();
   }
 
-  // @PostMapping("/favorites")
-  // public Response saveFavorite(@RequestBody Favorite favorite) {
-  // return apiService.saveFavorite(favorite);
-  // }
+  @PostMapping("/favorites")
+  public Response saveFavorite(@RequestBody FavoriteRequest favorite) {
+    return apiService.saveFavorite(favorite);
+  }
 
 }

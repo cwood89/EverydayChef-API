@@ -29,6 +29,7 @@
 
     <h2>Search</h2>
     <p class="description">Returns a list of recipes for a specific query</p>
+    <p class="description">Will also return single recipe when queried by recipeId.</p>
     <p>Path: <code>https://everydaychef-api.herokuapp.com/recipes</code></p>
     <h3>Parameters</h3>
     <table>
@@ -49,8 +50,11 @@
         { <br>
           "recipe": { <br>
               "id": null, <br>
+              "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_b79327d05b8e5b838ad6cfd9576b30b6",<br>
+              "recipeId": "b79327d05b8e5b838ad6cfd9576b30b6",<br>
               "label": "Crisp Tacos Picadillo", <br>
               "image": "https://www.edamam.com/web-img/32d/32da8c201c42d8aae7a7f51449c83e2a.jpg", <br>
+              "source": "Lottie and Loof",<br>
               "url": "http://www.lottieanddoof.com/2009/07/picadillo/", <br>
               "yield": 14.0, <br>
               "totalTime": 0.0, <br>
@@ -123,6 +127,7 @@
       <code>
         { "label": "Fish Tacos",<br>
           "image": "https://www.edamam.com/web-img/b3a/b3ac43e915f8a866a939e809f551eb3c.jpg",<br>
+          "source": "Lottie and Loof",<br>
           "url": "http://www.lottieanddoof.com/2009/07/picadillo/",<br>
           "yield": 3.0,<br>
           "totalTime": 1.5,<br>

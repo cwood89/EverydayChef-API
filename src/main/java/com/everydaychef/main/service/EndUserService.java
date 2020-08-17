@@ -7,8 +7,10 @@ import java.util.Optional;
 import javax.validation.Valid;
 import com.everydaychef.main.model.EndUser;
 import com.everydaychef.main.model.Favorite;
+import com.everydaychef.main.model.FavoriteRequest;
 import com.everydaychef.main.model.Response;
 import com.everydaychef.main.repository.EndUserRepository;
+import com.everydaychef.main.repository.FavoriteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,12 @@ import org.springframework.validation.BindingResult;
 
 @Service
 public class EndUserService {
+
   @Autowired
   EndUserRepository endUserRepository;
+
+  @Autowired
+  FavoriteRepository favoriteRepository;
 
   public static boolean emailValidator(String email) {
 
@@ -100,17 +106,20 @@ public class EndUserService {
     return new Response("success", "Logged out.", null);
   }
 
-  // public Response saveFavorite(Favorite favorite) {
-  // // get user
-  // Long userId = favorite.getUserId();
-  // if (userId != null) {
-  // Optional<EndUser> findUser = endUserRepository.findById(userId);
-  // if (findUser.isPresent()) {
-  // EndUser user = findUser.get();
-  // }
+  public Response saveFavorite(FavoriteRequest favoriteRequest) {
 
-  // }
-  // // add recipe id to favorite array
-  // return new Response("success", "You liked this recipe.", null);
-  // }
+    Optional<EndUser> findUser = endUserRepository.findById(favoriteRequest.getUserId());
+
+    if (findUser.isPresent()) {
+      EndUser user = findUser.get();
+      Favorite favorite = new Favorite();
+      favorite.setUser(user);
+      favorite.setRecipeId(favoriteRequest.getRecipeId());
+      favoriteRepository.save(favorite);
+      return new Response("success", "Favorite saved.", user.getId());
+    } else {
+      return new Response("error", "no user present.", null);
+    }
+
+  }
 }

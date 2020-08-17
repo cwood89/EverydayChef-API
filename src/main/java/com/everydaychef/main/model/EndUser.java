@@ -1,8 +1,5 @@
 package com.everydaychef.main.model;
 
-// import java.util.ArrayList;
-// import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,8 +35,6 @@ public class EndUser {
   @NotNull(message = "Please provide a password")
   private String password;
 
-  // private List<String> favorites; // array of strings containing recipe ids.
-
   public EndUser() {
   }
 
@@ -50,7 +45,6 @@ public class EndUser {
     this.userName = userName;
     this.email = email;
     this.password = password;
-    // this.favorites = favorites;
   }
 
   public String getFirstName() {
@@ -92,18 +86,6 @@ public class EndUser {
   public void setPassword(String password) {
     this.password = password;
   }
-
-  // public List<String> getFavorites() {
-  // return favorites;
-  // }
-
-  // public void setFavorites(List<String> favorites) {
-  // this.favorites = favorites;
-  // }
-
-  // public boolean addFavorite(String favorite) {
-  // return this.favorites.add(favorite);
-  // }
 
   public Long getId() {
     return id;
