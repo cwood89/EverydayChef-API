@@ -31,7 +31,6 @@ public class RecipeService {
   public List<ApiRecipe> getRecipes(String search) {
 
     String query = recipeUrl + "app_id=" + apiId + "&app_key=" + apiKey + "&to=50&q=" + search;
-    System.out.println(query);
     RestTemplate restTemplate = new RestTemplate();
     RecipeResponse recipes = restTemplate.getForObject(query, RecipeResponse.class);
     List<ApiRecipe> hits = Arrays.asList(recipes.getHits());

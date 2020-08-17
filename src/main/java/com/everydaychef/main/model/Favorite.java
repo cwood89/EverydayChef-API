@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -15,10 +15,10 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Favorite {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @ManyToMany(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   @OnDelete(action = OnDeleteAction.CASCADE)
   private EndUser user;
