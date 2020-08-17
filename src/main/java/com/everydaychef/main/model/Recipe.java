@@ -21,9 +21,10 @@ public class Recipe {
   private Double totalTime;
   private String[] ingredientLines;
 
-  public Recipe(String uri, String label, String image, String source, String url, Double yield, Double totalTime,
-      String[] ingredientLines) {
-    this.recipeId = this.parseId(uri);
+  public Recipe(String recipeId, String uri, String label, String image, String source, String url, Double yield,
+      Double totalTime, String[] ingredientLines) {
+    this.recipeId = recipeId;
+    this.uri = uri;
     this.label = label;
     this.image = image;
     this.url = url;
@@ -108,6 +109,14 @@ public class Recipe {
 
   public void setRecipeId(String recipeId) {
     this.recipeId = recipeId;
+  }
+
+  public String getUri() {
+    return uri;
+  }
+
+  public void setUri(String uri) {
+    this.uri = uri;
   }
 
 }
