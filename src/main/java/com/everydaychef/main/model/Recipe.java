@@ -21,9 +21,9 @@ public class Recipe {
   private Double totalTime;
   private String[] ingredientLines;
 
-  public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,
+  public Recipe(String uri, String label, String image, String source, String url, Double yield, Double totalTime,
       String[] ingredientLines) {
-    this.recipeId = this.parseId(this.uri);
+    this.recipeId = this.parseId(uri);
     this.label = label;
     this.image = image;
     this.url = url;
