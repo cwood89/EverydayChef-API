@@ -1,9 +1,14 @@
 package com.everydaychef.main.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -34,6 +39,10 @@ public class EndUser {
 
   @NotNull(message = "Please provide a password")
   private String password;
+
+  @ManyToMany
+  @JoinTable(name = "user_favorites", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
+  private Set<Favorite> userFavorites;
 
   public EndUser() {
   }
@@ -93,6 +102,10 @@ public class EndUser {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Set<Favorite> getFavorites() {
+    return userFavorites;
   }
 
 }
