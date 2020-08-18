@@ -2,6 +2,7 @@ package com.everydaychef.main.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -119,11 +120,11 @@ public class EndUser {
     favorite.getUsers().remove(this);
   }
 
-  // @Override
-  // public String toString() {
-  // return "EndUser [email=" + email + ", firstName=" + firstName + ", id=" + id
-  // + ", lastName=" + lastName
-  // + ", userFavorites=" + userFavorites + ", userName=" + userName + "]";
-  // }
+  @Override
+  public String toString() {
+    return "EndUser [email=" + email + ", firstName=" + firstName + ", id=" + id + ", lastName=" + lastName
+        + ", userFavorites=" + userFavorites.stream().map(Favorite::getRecipeId).collect(Collectors.toList())
+        + ", userName=" + userName + "]";
+  }
 
 }
