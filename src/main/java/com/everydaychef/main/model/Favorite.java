@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Favorite {
@@ -53,7 +52,7 @@ public class Favorite {
     user.getFavorites().add(this);
   }
 
-  public void removeFavorite(EndUser user) {
+  public void removeUser(EndUser user) {
     this.user.remove(user);
     user.getFavorites().remove(this);
   }

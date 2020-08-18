@@ -142,6 +142,7 @@ public class EndUserService {
 
         if (fave.getRecipeId().equals(favoriteRequest.getRecipeId())) {
           System.out.println(fave);
+          fave.getUsers().clear();
           user.removeFavorite(fave);
         }
       }
