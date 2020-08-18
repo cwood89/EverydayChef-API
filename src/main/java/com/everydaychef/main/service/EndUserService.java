@@ -115,8 +115,8 @@ public class EndUserService {
       EndUser user = findUser.get();
       Favorite favorite = new Favorite();
       favorite.setRecipeId(favoriteRequest.getRecipeId());
-      System.out.println(favorite);
       user.addFavorite(favorite);
+      System.out.println(favorite);
       return new Response("success", "Favorite saved.", user.getId());
     } else {
       return new Response("error", "no user present.", null);
