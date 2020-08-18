@@ -139,6 +139,8 @@ public class EndUserService {
     if (findUser.isPresent()) {
       EndUser user = findUser.get();
       for (Favorite fave : user.getFavorites()) {
+        System.out.println(fave.getRecipeId());
+        System.out.println(favoriteRequest.getRecipeId());
         if (fave.getRecipeId().equals(favoriteRequest.getRecipeId())) {
           user.removeFavorite(fave);
         }
