@@ -116,6 +116,7 @@ public class EndUserService {
       Favorite favorite = new Favorite();
       favorite.setRecipeId(favoriteRequest.getRecipeId());
       user.addFavorite(favorite);
+      favoriteRepository.save(favorite);
       System.out.println(favorite);
       return new Response("success", "Favorite saved.", user.getId());
     } else {
