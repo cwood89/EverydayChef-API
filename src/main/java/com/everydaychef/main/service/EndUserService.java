@@ -2,8 +2,12 @@ package com.everydaychef.main.service;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 import com.everydaychef.main.model.EndUser;
+import com.everydaychef.main.model.Favorite;
+import com.everydaychef.main.model.FavoriteRequest;
 import com.everydaychef.main.model.Response;
 import com.everydaychef.main.repository.EndUserRepository;
 import com.everydaychef.main.repository.FavoriteRepository;
@@ -102,21 +106,19 @@ public class EndUserService {
     return new Response("success", "Logged out.", null);
   }
 
-  // public Response saveFavorite(FavoriteRequest favoriteRequest) {
+  public Response saveFavorite(FavoriteRequest favoriteRequest) {
 
-  // Optional<EndUser> findUser =
-  // endUserRepository.findById(favoriteRequest.getUserId());
+    Optional<EndUser> findUser = endUserRepository.findById(favoriteRequest.getUserId());
 
-  // if (findUser.isPresent()) {
-  // EndUser user = findUser.get();
-  // Favorite favorite = new Favorite();
-  // favorite.setUser(user);
-  // favorite.setRecipeId(favoriteRequest.getRecipeId());
-  // favoriteRepository.save(favorite);
-  // return new Response("success", "Favorite saved.", user.getId());
-  // } else {
-  // return new Response("error", "no user present.", null);
-  // }
+    if (findUser.isPresent()) {
+      EndUser user = findUser.get();
+      Favorite favorite = new Favorite();
+      favorite.setRecipeId(favoriteRequest.getRecipeId());
+      user.addFavorite(favorite);
+      return new Response("success", "Favorite saved.", user.getId());
+    } else {
+      return new Response("error", "no user present.", null);
+    }
 
-  // }
+  }
 }
