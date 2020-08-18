@@ -80,41 +80,34 @@ public class EndUserService {
     // savedUser.getId());
   }
 
-  public EndUser login(EndUser endUser) {
+  public Response login(EndUser endUser) {
 
     if (endUser.getUserName() != null) {
       EndUser userByName = endUserRepository.findByUserName(endUser.getUserName());
       if (userByName != null) {
         if (userByName.getPassword().equals(endUser.getPassword())) {
-          return userByName;
-          // return new Response("success", "Login successful.", userByName.getId());
+          return new Response("success", "Login successful.", userByName);
         } else {
-          return null;
-          // return new Response("error", "Invalid password.", null);
+          return new Response("error", "Invalid password.", null);
         }
       } else {
-        return null;
-        // return new Response("error", "Invalid username.", null);
+        return new Response("error", "Invalid username.", null);
       }
 
     } else if (endUser.getEmail() != null) {
       EndUser userByEmail = endUserRepository.findByEmail(endUser.getEmail());
       if (userByEmail != null) {
         if (userByEmail.getPassword().equals(endUser.getPassword())) {
-          return userByEmail;
-          // return new Response("success", "Login successful.", userByEmail.getId());
+          return new Response("success", "Login successful.", userByEmail);
         } else {
-          return null;
-          // return new Response("error", "Invalid password.", null);
+          return new Response("error", "Invalid password.", null);
         }
       } else {
-        return null;
-        // return new Response("error", "Invalid email.", null);
+        return new Response("error", "Invalid email.", null);
       }
 
     } else {
-      return null;
-      // return new Response("error", "Please enter a username or email.", null);
+      return new Response("error", "Please enter a username or email.", null);
     }
 
   }

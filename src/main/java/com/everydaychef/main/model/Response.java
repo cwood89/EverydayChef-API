@@ -3,15 +3,15 @@ package com.everydaychef.main.model;
 public class Response {
   public String status;
   public String message;
-  public Long userId;
+  public EndUser user;
 
   public Response() {
   }
 
-  public Response(String status, String message, Long userId) {
+  public Response(String status, String message, EndUser user) {
     this.status = status;
     this.message = message;
-    this.userId = userId;
+    this.user = user;
   }
 
   public String getStatus() {
@@ -30,12 +30,12 @@ public class Response {
     this.message = message;
   }
 
-  public Long getUserId() {
-    return userId;
+  public EndUser getUser() {
+    return user;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setUser(EndUser user) {
+    this.user = user;
   }
 
 }
