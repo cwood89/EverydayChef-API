@@ -1,5 +1,6 @@
 package com.everydaychef.main.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Favorite {
   private Long id;
 
   @ManyToMany(mappedBy = "userFavorites")
-  private Set<EndUser> user;
+  private Set<EndUser> user = new HashSet<EndUser>();
 
   public String recipeId;
 
