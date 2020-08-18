@@ -127,6 +127,7 @@ public class EndUserService {
     Optional<EndUser> endUser = endUserRepository.findById(userId);
     if (endUser.isPresent()) {
       EndUser user = endUser.get();
+      System.out.println(user.getFavorites());
       return user.getFavorites();
     }
     return null;
