@@ -144,9 +144,9 @@ public class EndUserService {
           System.out.println(fave);
           fave.getUsers().clear();
           user.removeFavorite(fave);
-          endUserRepository.save(user);
         }
       }
+      endUserRepository.save(user);
       return new Response("success", "Favorite removed.", user.getId());
     }
     return new Response("error", "Invalid input", null);
