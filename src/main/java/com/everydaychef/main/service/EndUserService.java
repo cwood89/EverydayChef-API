@@ -37,37 +37,47 @@ public class EndUserService {
     return true;
   }
 
-  public Response signup(@Valid EndUser endUser, BindingResult bindingResult) {
-    // check to see if user exists
-    EndUser savedUser = new EndUser();
+  public EndUser signup(@Valid EndUser endUser, BindingResult bindingResult) {
+
     EndUser userExists = endUserRepository.findByUserName(endUser.getUserName());
 
     if (userExists != null) {
       bindingResult.rejectValue("userName", "error.user", "Username is already taken");
-      return new Response("error", "Username is already taken.", null);
     }
+    return endUserRepository.save(endUser);
 
-    if (endUser.getFirstName() == null) {
-      return new Response("error", "Please enter your first name.", null);
-    } else if (endUser.getLastName() == null) {
-      return new Response("error", "Please enter your last name.", null);
-    } else if (endUser.getEmail() == null) {
-      return new Response("error", "Please enter an email.", null);
-    } else if (!emailValidator(endUser.getEmail())) {
-      return new Response("error", "Please enter a valid email.", null);
-    } else if (endUser.getPassword() == null) {
-      return new Response("error", "Please enter a password.", null);
-    }
+    // // check to see if user exists
+    // EndUser savedUser = new EndUser();
+    // EndUser userExists = endUserRepository.findByUserName(endUser.getUserName());
 
-    if (!bindingResult.hasErrors()) {
-      savedUser = endUserRepository.save(endUser);
-    }
+    // if (userExists != null) {
+    // bindingResult.rejectValue("userName", "error.user", "Username is already
+    // taken");
+    // return new Response("error", "Username is already taken.", null);
+    // }
 
-    if (bindingResult.hasErrors()) {
-      return new Response("error", "Server error.", null);
-    }
+    // if (endUser.getFirstName() == null) {
+    // return new Response("error", "Please enter your first name.", null);
+    // } else if (endUser.getLastName() == null) {
+    // return new Response("error", "Please enter your last name.", null);
+    // } else if (endUser.getEmail() == null) {
+    // return new Response("error", "Please enter an email.", null);
+    // } else if (!emailValidator(endUser.getEmail())) {
+    // return new Response("error", "Please enter a valid email.", null);
+    // } else if (endUser.getPassword() == null) {
+    // return new Response("error", "Please enter a password.", null);
+    // }
 
-    return new Response("success", "Your account has been created.", savedUser.getId());
+    // if (!bindingResult.hasErrors()) {
+    // savedUser = endUserRepository.save(endUser);
+    // }
+
+    // if (bindingResult.hasErrors()) {
+    // return new Response("error", "Server error.", null);
+    // }
+
+    // return new Response("success", "Your account has been created.",
+    // savedUser.getId());
   }
 
   public Response login(EndUser endUser) {
@@ -128,6 +138,9 @@ public class EndUserService {
     if (endUser.isPresent()) {
       EndUser user = endUser.get();
       return user.getFavoriteIds();
+      // for each id call recipe search function
+      // that returns the recipe obj
+      // create an array of those objects and return that
     }
     return null;
   }

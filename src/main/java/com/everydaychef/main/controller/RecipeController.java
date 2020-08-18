@@ -25,8 +25,7 @@ public class RecipeController {
   public List<ApiRecipe> recipes(@RequestParam(value = "q", required = true) String search) {
 
     return apiService.getRecipes(search);
-    // // hit our WINdb for recipes
-    // // send all of it
+
   }
 
   @PostMapping("/recipes")

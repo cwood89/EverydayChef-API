@@ -20,7 +20,7 @@ public class EndUserController {
   private EndUserService apiService;
 
   @PostMapping("/signup")
-  public Response signup(@RequestBody EndUser endUser, BindingResult bindingResult) {
+  public EndUser signup(@RequestBody EndUser endUser, BindingResult bindingResult) {
     return apiService.signup(endUser, bindingResult);
   }
 
