@@ -135,11 +135,14 @@ public class EndUserService {
   public Response removeFavorite(FavoriteRequest favoriteRequest) {
 
     Optional<EndUser> findUser = endUserRepository.findById(favoriteRequest.getUserId());
-    Favorite findFavorite = favoriteRepository.findByRecipeId(favoriteRequest.getRecipeId());
 
-    if (findUser.isPresent() && findFavorite != null) {
+    if (findUser.isPresent()) {
       EndUser user = findUser.get();
-      user.removeFavorite(findFavorite);
+      for (Favorite fave : user.getFavorites()) {
+        if (fave.getRecipeId().equals(favoriteRequest.getRecipeId())) {
+          user.removeFavorite(fave);
+        }
+      }
       return new Response("success", "Favorite removed.", user.getId());
     }
     return new Response("error", "Invalid input", null);
