@@ -3,7 +3,9 @@ package com.everydaychef.main.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,7 @@ public class Favorite {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @ManyToMany(mappedBy = "userFavorites")
+  @ManyToMany(mappedBy = "userFavorites", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private Set<EndUser> user = new HashSet<EndUser>();
 
   public String recipeId;
@@ -43,6 +45,16 @@ public class Favorite {
 
   public void setUser(Set<EndUser> user) {
     this.user = user;
+  }
+
+  public void addUser(EndUser user) {
+    this.user.add(user);
+    user.getFavorites().add(this);
+  }
+
+  public void removeFavorite(EndUser user) {
+    this.user.remove(user);
+    user.getFavorites().remove(this);
   }
 
   @Override

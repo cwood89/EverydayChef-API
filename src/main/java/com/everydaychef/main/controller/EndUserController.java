@@ -43,7 +43,7 @@ public class EndUserController {
   }
 
   @GetMapping("/favorites")
-  public Set<Favorite> getFavorites(@RequestParam(value = "userId", required = true) Long userId) {
+  public String[] getFavorites(@RequestParam(value = "userId", required = true) Long userId) {
     return apiService.getFavorites(userId);
   }
 

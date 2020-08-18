@@ -1,10 +1,14 @@
 package com.everydaychef.main.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +46,7 @@ public class EndUser {
   @NotNull(message = "Please provide a password")
   private String password;
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
   @JoinTable(name = "user_favorites", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
   private Set<Favorite> userFavorites = new HashSet<Favorite>();
 
@@ -106,8 +110,19 @@ public class EndUser {
     this.id = id;
   }
 
-  public Set<Favorite> getFavorites() {
-    return userFavorites;
+  public String[] getFavorites() {
+
+    List<String> list = new ArrayList<String>();
+
+    String[] arr = new String[this.userFavorites.size()];
+
+    for (Favorite fave : this.userFavorites) {
+      System.out.println(fave.getRecipeId());
+      list.add(fave.getRecipeId());
+    }
+    arr = list.toArray(arr);
+
+    return arr;
   }
 
   public void addFavorite(Favorite favorite) {
