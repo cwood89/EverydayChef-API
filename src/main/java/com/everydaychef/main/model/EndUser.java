@@ -110,7 +110,11 @@ public class EndUser {
     this.id = id;
   }
 
-  public String[] getFavorites() {
+  public Set<Favorite> getFavorites() {
+    return userFavorites;
+  }
+
+  public String[] getFavoriteIds() {
 
     List<String> list = new ArrayList<String>();
 
