@@ -121,7 +121,6 @@ public class EndUser {
     String[] arr = new String[this.userFavorites.size()];
 
     for (Favorite fave : this.userFavorites) {
-      System.out.println(fave.getRecipeId());
       list.add(fave.getRecipeId());
     }
     arr = list.toArray(arr);

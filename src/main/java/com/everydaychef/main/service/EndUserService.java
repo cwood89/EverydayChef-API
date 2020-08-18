@@ -127,9 +127,21 @@ public class EndUserService {
     Optional<EndUser> endUser = endUserRepository.findById(userId);
     if (endUser.isPresent()) {
       EndUser user = endUser.get();
-      System.out.println(user.getFavorites());
       return user.getFavoriteIds();
     }
     return null;
+  }
+
+  public Response removeFavorite(FavoriteRequest favoriteRequest) {
+
+    Optional<EndUser> findUser = endUserRepository.findById(favoriteRequest.getUserId());
+    Favorite findFavorite = favoriteRepository.findByRecipeId(favoriteRequest.getRecipeId());
+
+    if (findUser.isPresent() && findFavorite != null) {
+      EndUser user = findUser.get();
+      user.removeFavorite(findFavorite);
+      return new Response("success", "Favorite removed.", user.getId());
+    }
+    return new Response("error", "Invalid input", null);
   }
 }
