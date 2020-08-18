@@ -3,6 +3,7 @@ package com.everydaychef.main.service;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.Optional;
+import java.util.Set;
 
 import javax.validation.Valid;
 import com.everydaychef.main.model.EndUser;
@@ -120,5 +121,14 @@ public class EndUserService {
       return new Response("error", "no user present.", null);
     }
 
+  }
+
+  public Set<Favorite> getFavorites(Long userId) {
+    Optional<EndUser> endUser = endUserRepository.findById(userId);
+    if (endUser.isPresent()) {
+      EndUser user = endUser.get();
+      return user.getFavorites();
+    }
+    return null;
   }
 }
