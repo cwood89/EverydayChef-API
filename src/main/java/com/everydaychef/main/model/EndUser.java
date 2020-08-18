@@ -1,5 +1,6 @@
 package com.everydaychef.main.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -42,7 +43,7 @@ public class EndUser {
 
   @ManyToMany
   @JoinTable(name = "user_favorites", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
-  private Set<Favorite> userFavorites;
+  private Set<Favorite> userFavorites = new HashSet<Favorite>();
 
   public EndUser() {
   }
@@ -106,6 +107,16 @@ public class EndUser {
 
   public Set<Favorite> getFavorites() {
     return userFavorites;
+  }
+
+  public void addFavorite(Favorite favorite) {
+    this.userFavorites.add(favorite);
+    favorite.getUsers().add(this);
+  }
+
+  public void removeFavorite(Favorite favorite) {
+    this.userFavorites.remove(favorite);
+    favorite.getUsers().remove(this);
   }
 
 }

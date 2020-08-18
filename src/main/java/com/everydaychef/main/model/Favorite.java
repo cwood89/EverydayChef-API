@@ -45,7 +45,7 @@ public class Favorite {
     this.id = id;
   }
 
-  public Set<EndUser> getUser() {
+  public Set<EndUser> getUsers() {
     return user;
   }
 
