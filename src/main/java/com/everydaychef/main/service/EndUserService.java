@@ -126,7 +126,7 @@ public class EndUserService {
       favorite.setRecipeId(favoriteRequest.getRecipeId());
       user.addFavorite(favorite);
       favoriteRepository.save(favorite);
-      return new Response("success", "Favorite saved.", user.getId());
+      return new Response("success", "Favorite saved.", user);
     } else {
       return new Response("error", "no user present.", null);
     }
@@ -160,7 +160,7 @@ public class EndUserService {
         }
       }
       endUserRepository.save(user);
-      return new Response("success", "Favorite removed.", user.getId());
+      return new Response("success", "Favorite removed.", user);
     }
     return new Response("error", "Invalid input", null);
   }

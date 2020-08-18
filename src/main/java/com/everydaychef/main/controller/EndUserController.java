@@ -25,7 +25,7 @@ public class EndUserController {
   }
 
   @PostMapping("/login")
-  public EndUser login(@RequestBody EndUser endUser) {
+  public Response login(@RequestBody EndUser endUser) {
     return apiService.login(endUser);
   }
 
