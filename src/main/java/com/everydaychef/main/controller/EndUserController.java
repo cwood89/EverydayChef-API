@@ -1,9 +1,6 @@
 package com.everydaychef.main.controller;
 
-import java.util.Set;
-
 import com.everydaychef.main.model.EndUser;
-import com.everydaychef.main.model.Favorite;
 import com.everydaychef.main.model.FavoriteRequest;
 import com.everydaychef.main.model.Response;
 import com.everydaychef.main.service.EndUserService;
