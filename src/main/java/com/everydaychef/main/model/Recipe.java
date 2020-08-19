@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Recipe {
@@ -30,7 +31,7 @@ public class Recipe {
   private String[] ingredientLines;
 
   @OneToMany(mappedBy = "recipe")
-  // @JsonBackReference
+  @JsonIgnoreProperties("recipe")
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
   public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,

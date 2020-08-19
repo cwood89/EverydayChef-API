@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,7 +27,7 @@ public class Favorite {
   private Long id;
 
   @ManyToMany(mappedBy = "userFavorites")
-  // @JsonBackReference
+  @JsonIgnoreProperties("userFavorites")
   private Set<EndUser> user = new HashSet<EndUser>();
 
   @OneToOne(cascade = CascadeType.PERSIST)
