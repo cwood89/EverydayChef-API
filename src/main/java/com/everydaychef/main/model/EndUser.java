@@ -57,8 +57,7 @@ public class EndUser {
 
   @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(name = "user_favorites", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
-  // @JsonManagedReference
-  @JsonIgnoreProperties("user")
+  @JsonManagedReference
   private Set<Favorite> userFavorites = new HashSet<Favorite>();
 
   public EndUser() {

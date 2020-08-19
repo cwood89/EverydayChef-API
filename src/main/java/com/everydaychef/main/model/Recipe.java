@@ -31,7 +31,7 @@ public class Recipe {
   private String[] ingredientLines;
 
   @OneToMany(mappedBy = "recipe")
-  @JsonIgnoreProperties("recipe")
+  @JsonBackReference
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
   public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,
