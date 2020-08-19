@@ -136,7 +136,7 @@ public class EndUserService {
   }
 
   public Response saveFavorite(FavoriteRequest favoriteRequest) {
-
+    EndUserDTO userDTO = null;
     Optional<EndUser> findUser = endUserRepository.findById(favoriteRequest.getUserId());
 
     if (findUser.isPresent()) {
@@ -146,24 +146,24 @@ public class EndUserService {
       favorite.setRecipe(recipe);
       user.addFavorite(favorite);
       favoriteRepository.save(favorite);
-      return new Response("success", "Favorite saved.", null);
+      userDTO = createDTO(user);
+      return new Response("success", "Favorite saved.", userDTO);
     } else {
       return new Response("error", "no user present.", null);
     }
 
   }
 
-  // public String[] getFavorites(Long userId) {
-  // Optional<EndUser> endUser = endUserRepository.findById(userId);
-  // if (endUser.isPresent()) {
-  // EndUser user = endUser.get();
-  // return user.getFavoriteIds();
-  // // for each id call recipe search function
-  // // that returns the recipe obj
-  // // create an array of those objects and return that
-  // }
-  // return null;
-  // }
+  public Response getFavorites(Long userId) {
+    EndUserDTO userDTO = null;
+    Optional<EndUser> endUser = endUserRepository.findById(userId);
+    if (endUser.isPresent()) {
+      EndUser user = endUser.get();
+      userDTO = createDTO(user);
+      return new Response("success", "Favorites found.", userDTO);
+    }
+    return null;
+  }
 
   // public Response removeFavorite(FavoriteRequest favoriteRequest) {
 
