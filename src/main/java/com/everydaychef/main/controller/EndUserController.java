@@ -44,9 +44,9 @@ public class EndUserController {
     return apiService.getFavorites(userId);
   }
 
-  // @PostMapping("/favorites/delete")
-  // public Response removeFavorite(@RequestBody FavoriteRequest favorite) {
-  // return apiService.removeFavorite(favorite);
-  // }
+  @PostMapping("/favorites/delete")
+  public Response removeFavorite(@RequestBody FavoriteRequest favorite) {
+    return apiService.removeFavorite(favorite);
+  }
 
 }
