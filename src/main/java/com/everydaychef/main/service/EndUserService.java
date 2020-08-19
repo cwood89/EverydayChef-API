@@ -50,13 +50,14 @@ public class EndUserService {
     userDTO.setLastName(user.getLastName());
     userDTO.setUserName(user.getUserName());
     userDTO.setEmail(user.getEmail());
-    userDTO.setFavorites(user.getFavorites());
+
+    userDTO.setFavorites(userDTO.getRecipes(user.getFavorites()));
     return userDTO;
   }
 
   public Response signup(@Valid EndUser endUser, BindingResult bindingResult) {
+
     EndUserDTO userDTO = null;
-    // EndUserDTO userDTO = new EndUserDTO();
     // check to see if user exists
     EndUser savedUser = new EndUser();
     EndUser userExists = endUserRepository.findByUserName(endUser.getUserName());
@@ -85,13 +86,6 @@ public class EndUserService {
     if (!bindingResult.hasErrors()) {
       savedUser = endUserRepository.save(endUser);
       userDTO = createDTO(savedUser);
-      // userDTO.setId(savedUser.getId());
-      // userDTO.setFirstName(savedUser.getFirstName());
-      // userDTO.setLastName(savedUser.getLastName());
-      // userDTO.setUserName(savedUser.getUserName());
-      // userDTO.setEmail(savedUser.getEmail());
-      // userDTO.setFavorites(savedUser.getFavorites());
-
     }
 
     if (bindingResult.hasErrors()) {

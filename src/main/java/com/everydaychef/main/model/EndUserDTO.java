@@ -1,5 +1,6 @@
 package com.everydaychef.main.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class EndUserDTO {
@@ -8,10 +9,9 @@ public class EndUserDTO {
   private String lastName;
   private String userName;
   private String email;
-  private Set<Favorite> favorites;
+  private Set<Recipe> favorites;
 
-  public EndUserDTO(Long id, String firstName, String lastName, String userName, String email,
-      Set<Favorite> favorites) {
+  public EndUserDTO(Long id, String firstName, String lastName, String userName, String email, Set<Recipe> favorites) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -63,12 +63,19 @@ public class EndUserDTO {
     this.email = email;
   }
 
-  public Set<Favorite> getFavorites() {
+  public Set<Recipe> getFavorites() {
     return favorites;
   }
 
-  public void setFavorites(Set<Favorite> favorites) {
+  public void setFavorites(Set<Recipe> favorites) {
     this.favorites = favorites;
   }
 
+  public Set<Recipe> getRecipes(Set<Favorite> favorites) {
+    Set<Recipe> recipes = new HashSet<Recipe>();
+    for (Favorite fave : favorites) {
+      recipes.add(fave.getRecipe());
+    }
+    return recipes;
+  }
 }
