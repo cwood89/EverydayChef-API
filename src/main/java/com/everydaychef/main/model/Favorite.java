@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Favorite {
 
@@ -21,7 +23,8 @@ public class Favorite {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @ManyToMany(mappedBy = "userFavorites", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  @ManyToMany(mappedBy = "userFavorites")
+  @JsonBackReference
   private Set<EndUser> user = new HashSet<EndUser>();
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
