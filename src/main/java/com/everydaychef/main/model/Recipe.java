@@ -4,16 +4,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Recipe {
@@ -31,7 +26,6 @@ public class Recipe {
   private String[] ingredientLines;
 
   @OneToMany(mappedBy = "recipe")
-  @JsonBackReference
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
   public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,
