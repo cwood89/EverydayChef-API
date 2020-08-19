@@ -38,9 +38,9 @@ public class Recipe {
   @JoinTable(name = "recipe_favorites", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
-  public Recipe(String recipeId, String uri, String label, String image, String source, String url, Double yield,
-      Double totalTime, String[] ingredientLines, Set<Favorite> favorites) {
-    this.recipeId = recipeId;
+  public Recipe(String uri, String label, String image, String source, String url, Double yield, Double totalTime,
+      String[] ingredientLines, Set<Favorite> favorites) {
+    this.parseId(uri);
     this.uri = uri;
     this.label = label;
     this.image = image;
@@ -115,10 +115,10 @@ public class Recipe {
     this.source = source;
   }
 
-  public String parseId(String uri) {
+  public void parseId(String uri) {
     String delimits = "[_]+";
     String[] tokens = uri.split(delimits);
-    return tokens[1];
+    this.recipeId = tokens[1];
   }
 
   public String getRecipeId() {

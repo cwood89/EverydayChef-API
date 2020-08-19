@@ -34,9 +34,6 @@ public class RecipeService {
     RestTemplate restTemplate = new RestTemplate();
     RecipeResponse recipes = restTemplate.getForObject(query, RecipeResponse.class);
     List<ApiRecipe> hits = Arrays.asList(recipes.getHits());
-    for (ApiRecipe recipe : hits) {
-      recipe.recipe.setRecipeId(recipe.recipe.parseId(recipe.recipe.getUri()));
-    }
 
     return hits;
   }
