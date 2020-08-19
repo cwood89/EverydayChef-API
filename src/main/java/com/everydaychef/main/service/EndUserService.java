@@ -58,6 +58,8 @@ public class EndUserService {
       return new Response("error", "Please enter a valid email.", null);
     } else if (endUser.getPassword() == null) {
       return new Response("error", "Please enter a password.", null);
+    } else if (endUser.getUserName() == null) {
+      return new Response("error", "Please enter a username.", null);
     }
 
     if (!bindingResult.hasErrors()) {
