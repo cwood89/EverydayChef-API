@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -24,7 +25,7 @@ public class Favorite {
   private Set<EndUser> user = new HashSet<EndUser>();
 
   @ManyToOne
-  @JoinColumn(name = "recipe_id", nullable = false)
+  @JoinTable(name = "recipe_favorites", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
   public Recipe recipe;
 
   public Favorite(Set<EndUser> user, Recipe recipe) {

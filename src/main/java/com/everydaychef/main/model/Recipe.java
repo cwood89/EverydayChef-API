@@ -3,14 +3,11 @@ package com.everydaychef.main.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,7 +32,6 @@ public class Recipe {
   private String[] ingredientLines;
 
   @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
-  @JoinTable(name = "recipe_favorites", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
   public Recipe(String uri, String label, String image, String source, String url, Double yield, Double totalTime,
