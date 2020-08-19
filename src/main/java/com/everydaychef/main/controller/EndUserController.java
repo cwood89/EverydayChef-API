@@ -2,7 +2,6 @@ package com.everydaychef.main.controller;
 
 import com.everydaychef.main.model.EndUser;
 import com.everydaychef.main.model.FavoriteRequest;
-import com.everydaychef.main.model.Recipe;
 import com.everydaychef.main.model.Response;
 import com.everydaychef.main.service.EndUserService;
 
@@ -40,11 +39,10 @@ public class EndUserController {
     return apiService.saveFavorite(favorite);
   }
 
-  // @GetMapping("/favorites")
-  // public Recipe[] getFavorites(@RequestParam(value = "userId", required = true)
-  // Long userId) {
-  // return apiService.getFavorites(userId);
-  // }
+  @GetMapping("/favorites")
+  public Response getFavorites(@RequestParam(value = "userId", required = true) Long userId) {
+    return apiService.getFavorites(userId);
+  }
 
   // @PostMapping("/favorites/delete")
   // public Response removeFavorite(@RequestBody FavoriteRequest favorite) {

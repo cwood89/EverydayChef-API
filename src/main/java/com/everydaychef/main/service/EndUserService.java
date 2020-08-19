@@ -165,24 +165,24 @@ public class EndUserService {
     return null;
   }
 
-  // public Response removeFavorite(FavoriteRequest favoriteRequest) {
+  public Response removeFavorite(FavoriteRequest favoriteRequest) {
+    EndUserDTO userDTO = null;
+    Optional<EndUser> findUser = endUserRepository.findById(favoriteRequest.getUserId());
 
-  // Optional<EndUser> findUser =
-  // endUserRepository.findById(favoriteRequest.getUserId());
+    if (findUser.isPresent()) {
+      EndUser user = findUser.get();
+      for (Favorite fave : user.getFavorites()) {
 
-  // if (findUser.isPresent()) {
-  // EndUser user = findUser.get();
-  // for (Favorite fave : user.getFavorites()) {
-
-  // if (fave.getRecipeId().equals(favoriteRequest.getRecipeId())) {
-  // System.out.println(fave);
-  // fave.getUsers().clear();
-  // user.removeFavorite(fave);
-  // }
-  // }
-  // endUserRepository.save(user);
-  // return new Response("success", "Favorite removed.", user);
-  // }
-  // return new Response("error", "Invalid input", null);
-  // }
+        if (fave.getRecipe().equals(favoriteRequest.getRecipe())) {
+          System.out.println(fave);
+          fave.getUsers().clear();
+          user.removeFavorite(fave);
+        }
+      }
+      endUserRepository.save(user);
+      userDTO = createDTO(user);
+      return new Response("success", "Favorite removed.", userDTO);
+    }
+    return new Response("error", "Invalid input", null);
+  }
 }
