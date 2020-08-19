@@ -42,7 +42,7 @@ public class EndUserService {
     // check to see if user exists
     EndUser savedUser = new EndUser();
     EndUser userExists = endUserRepository.findByUserName(endUser.getUserName());
-
+    EndUser emailExists = endUserRepository.findByEmail(endUser.getEmail());
     if (userExists != null) {
       bindingResult.rejectValue("userName", "error.user", "Username is already taken");
       return new Response("error", "Username is already taken.", null);
@@ -52,6 +52,8 @@ public class EndUserService {
       return new Response("error", "Please enter your first name.", null);
     } else if (endUser.getLastName() == null) {
       return new Response("error", "Please enter your last name.", null);
+    } else if (emailExists != null) {
+      return new Response("error", "Theres already an account with that email.", null);
     } else if (endUser.getEmail() == null) {
       return new Response("error", "Please enter an email.", null);
     } else if (!emailValidator(endUser.getEmail())) {
