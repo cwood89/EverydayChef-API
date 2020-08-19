@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Favorite {
@@ -29,6 +30,7 @@ public class Favorite {
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
   @JoinTable(name = "recipe_favorites", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
+  @JsonManagedReference
   public Recipe recipe;
 
   public Favorite(Set<EndUser> user, Recipe recipe) {

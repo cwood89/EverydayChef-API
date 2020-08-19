@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Recipe {
 
@@ -27,7 +29,8 @@ public class Recipe {
   private Double totalTime;
   private String[] ingredientLines;
 
-  @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+  @OneToMany(mappedBy = "recipe")
+  @JsonBackReference
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
   public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,
