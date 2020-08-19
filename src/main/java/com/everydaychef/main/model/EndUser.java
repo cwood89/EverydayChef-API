@@ -145,4 +145,10 @@ public class EndUser {
     favorite.getUsers().remove(this);
   }
 
+  @Override
+  public String toString() {
+    return "EndUser [email=" + email + ", firstName=" + firstName + ", id=" + id + ", lastName=" + lastName
+        + ", userName=" + userName + "]";
+  }
+
 }

@@ -1,5 +1,6 @@
 package com.everydaychef.main.model;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -118,6 +119,13 @@ public class Recipe {
   public void removeFavorite(Favorite favorite) {
     this.favorites.remove(favorite);
     favorite.setRecipe(null);
+  }
+
+  @Override
+  public String toString() {
+    return "Recipe [id=" + id + ", image=" + image + ", ingredientLines=" + Arrays.toString(ingredientLines)
+        + ", label=" + label + ", source=" + source + ", totalTime=" + totalTime + ", url=" + url + ", yield=" + yield
+        + "]";
   }
 
 }
