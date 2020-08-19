@@ -3,12 +3,12 @@ package com.everydaychef.main.model;
 public class Response {
   public String status;
   public String message;
-  public EndUser user;
+  public EndUserDTO user;
 
   public Response() {
   }
 
-  public Response(String status, String message, EndUser user) {
+  public Response(String status, String message, EndUserDTO user) {
     this.status = status;
     this.message = message;
     this.user = user;
@@ -30,11 +30,11 @@ public class Response {
     this.message = message;
   }
 
-  public EndUser getUser() {
+  public EndUserDTO getUser() {
     return user;
   }
 
-  public void setUser(EndUser user) {
+  public void setUser(EndUserDTO user) {
     this.user = user;
   }
 

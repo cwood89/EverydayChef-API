@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 import com.everydaychef.main.model.EndUser;
+import com.everydaychef.main.model.EndUserDTO;
 import com.everydaychef.main.model.Favorite;
 import com.everydaychef.main.model.FavoriteRequest;
 import com.everydaychef.main.model.Recipe;
@@ -42,8 +43,20 @@ public class EndUserService {
     return true;
   }
 
-  public Response signup(@Valid EndUser endUser, BindingResult bindingResult) {
+  public static EndUserDTO createDTO(EndUser user) {
+    EndUserDTO userDTO = new EndUserDTO();
+    userDTO.setId(user.getId());
+    userDTO.setFirstName(user.getFirstName());
+    userDTO.setLastName(user.getLastName());
+    userDTO.setUserName(user.getUserName());
+    userDTO.setEmail(user.getEmail());
+    userDTO.setFavorites(user.getFavorites());
+    return userDTO;
+  }
 
+  public Response signup(@Valid EndUser endUser, BindingResult bindingResult) {
+    EndUserDTO userDTO = null;
+    // EndUserDTO userDTO = new EndUserDTO();
     // check to see if user exists
     EndUser savedUser = new EndUser();
     EndUser userExists = endUserRepository.findByUserName(endUser.getUserName());
@@ -71,22 +84,33 @@ public class EndUserService {
 
     if (!bindingResult.hasErrors()) {
       savedUser = endUserRepository.save(endUser);
+      userDTO = createDTO(savedUser);
+      // userDTO.setId(savedUser.getId());
+      // userDTO.setFirstName(savedUser.getFirstName());
+      // userDTO.setLastName(savedUser.getLastName());
+      // userDTO.setUserName(savedUser.getUserName());
+      // userDTO.setEmail(savedUser.getEmail());
+      // userDTO.setFavorites(savedUser.getFavorites());
+
     }
 
     if (bindingResult.hasErrors()) {
       return new Response("error", "Server error.", null);
     }
 
-    return new Response("success", "Your account has been created.", savedUser);
+    return new Response("success", "Your account has been created.", userDTO);
   }
 
   public Response login(EndUser endUser) {
+
+    EndUserDTO userDTO = null;
 
     if (endUser.getUserName() != null) {
       EndUser userByName = endUserRepository.findByUserName(endUser.getUserName());
       if (userByName != null) {
         if (userByName.getPassword().equals(endUser.getPassword())) {
-          return new Response("success", "Login successful.", userByName);
+          userDTO = createDTO(userByName);
+          return new Response("success", "Login successful.", userDTO);
         } else {
           return new Response("error", "Invalid password.", null);
         }
@@ -98,7 +122,8 @@ public class EndUserService {
       EndUser userByEmail = endUserRepository.findByEmail(endUser.getEmail());
       if (userByEmail != null) {
         if (userByEmail.getPassword().equals(endUser.getPassword())) {
-          return new Response("success", "Login successful.", userByEmail);
+          userDTO = createDTO(userByEmail);
+          return new Response("success", "Login successful.", userDTO);
         } else {
           return new Response("error", "Invalid password.", null);
         }
@@ -127,7 +152,7 @@ public class EndUserService {
       favorite.setRecipe(recipe);
       user.addFavorite(favorite);
       favoriteRepository.save(favorite);
-      return new Response("success", "Favorite saved.", user);
+      return new Response("success", "Favorite saved.", null);
     } else {
       return new Response("error", "no user present.", null);
     }
