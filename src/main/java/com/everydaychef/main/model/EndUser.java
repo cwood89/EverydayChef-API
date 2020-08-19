@@ -20,6 +20,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -46,6 +48,7 @@ public class EndUser {
   @Column(unique = true)
   private String email;
 
+  @JsonIgnore
   @NotNull(message = "Please provide a password")
   private String password;
 
