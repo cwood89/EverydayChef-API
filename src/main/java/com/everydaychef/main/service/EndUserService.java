@@ -8,9 +8,11 @@ import javax.validation.Valid;
 import com.everydaychef.main.model.EndUser;
 import com.everydaychef.main.model.Favorite;
 import com.everydaychef.main.model.FavoriteRequest;
+import com.everydaychef.main.model.Recipe;
 import com.everydaychef.main.model.Response;
 import com.everydaychef.main.repository.EndUserRepository;
 import com.everydaychef.main.repository.FavoriteRepository;
+import com.everydaychef.main.repository.RecipeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,9 @@ public class EndUserService {
 
   @Autowired
   FavoriteRepository favoriteRepository;
+
+  @Autowired
+  RecipeRepository recipeRepository;
 
   public static boolean emailValidator(String email) {
 
@@ -118,7 +123,8 @@ public class EndUserService {
     if (findUser.isPresent()) {
       EndUser user = findUser.get();
       Favorite favorite = new Favorite();
-      favorite.setRecipe(favoriteRequest.getRecipe());
+      Recipe recipe = recipeRepository.save(favoriteRequest.getRecipe());
+      favorite.setRecipe(recipe);
       user.addFavorite(favorite);
       favoriteRepository.save(favorite);
       return new Response("success", "Favorite saved.", user);

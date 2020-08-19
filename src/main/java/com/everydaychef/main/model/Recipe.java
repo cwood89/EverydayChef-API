@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Recipe {
 
@@ -19,10 +17,6 @@ public class Recipe {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @JsonIgnore
-  private String uri;
-
-  private String recipeId;
   private String label;
   private String image;
   private String source;
@@ -34,10 +28,8 @@ public class Recipe {
   @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
-  public Recipe(String uri, String label, String image, String source, String url, Double yield, Double totalTime,
+  public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,
       String[] ingredientLines, Set<Favorite> favorites) {
-    this.parseId(uri);
-    this.uri = uri;
     this.label = label;
     this.image = image;
     this.url = url;
@@ -111,27 +103,11 @@ public class Recipe {
     this.source = source;
   }
 
-  public void parseId(String uri) {
-    String delimits = "[_]+";
-    String[] tokens = uri.split(delimits);
-    this.recipeId = tokens[1];
-  }
-
-  public String getRecipeId() {
-    return recipeId;
-  }
-
-  public void setRecipeId(String recipeId) {
-    this.recipeId = recipeId;
-  }
-
-  public String getUri() {
-    return uri;
-  }
-
-  public void setUri(String uri) {
-    this.uri = uri;
-  }
+  // public void parseId(String uri) {
+  // String delimits = "[_]+";
+  // String[] tokens = uri.split(delimits);
+  // this.recipeId = tokens[1];
+  // }
 
   public void addFavorite(Favorite favorite) {
     this.favorites.add(favorite);
