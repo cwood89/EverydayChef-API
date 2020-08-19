@@ -25,12 +25,12 @@ public class Favorite {
   private Long id;
 
   @ManyToMany(mappedBy = "userFavorites")
-  @JsonBackReference
+  // @JsonBackReference
   private Set<EndUser> user = new HashSet<EndUser>();
 
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
   @JoinTable(name = "recipe_favorites", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
-  @JsonManagedReference
+  // @JsonManagedReference
   public Recipe recipe;
 
   public Favorite(Set<EndUser> user, Recipe recipe) {
