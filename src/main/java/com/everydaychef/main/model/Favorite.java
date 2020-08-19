@@ -24,7 +24,7 @@ public class Favorite {
   @ManyToMany(mappedBy = "userFavorites", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private Set<EndUser> user = new HashSet<EndUser>();
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
   @JoinTable(name = "recipe_favorites", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
   public Recipe recipe;
 
