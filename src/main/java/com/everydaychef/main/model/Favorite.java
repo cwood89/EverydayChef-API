@@ -28,7 +28,7 @@ public class Favorite {
   // @JsonBackReference
   private Set<EndUser> user = new HashSet<EndUser>();
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToOne(cascade = CascadeType.PERSIST)
   @JoinTable(name = "recipe_favorites", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
   // @JsonManagedReference
   public Recipe recipe;

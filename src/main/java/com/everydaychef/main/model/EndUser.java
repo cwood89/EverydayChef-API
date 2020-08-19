@@ -54,7 +54,7 @@ public class EndUser {
   @NotNull(message = "Please provide a password")
   private String password;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(name = "user_favorites", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
   // @JsonManagedReference
   private Set<Favorite> userFavorites = new HashSet<Favorite>();
