@@ -9,8 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Favorite {
@@ -22,7 +23,8 @@ public class Favorite {
   @ManyToMany(mappedBy = "userFavorites", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private Set<EndUser> user = new HashSet<EndUser>();
 
-  @OneToMany(mappedBy = "favorites")
+  @ManyToOne
+  @JoinColumn(name = "recipe_id", nullable = false)
   public Recipe recipe;
 
   public Favorite(Set<EndUser> user, Recipe recipe) {

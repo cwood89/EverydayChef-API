@@ -34,7 +34,7 @@ public class Recipe {
   private Double totalTime;
   private String[] ingredientLines;
 
-  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+  @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
   @JoinTable(name = "recipe_favorites", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
