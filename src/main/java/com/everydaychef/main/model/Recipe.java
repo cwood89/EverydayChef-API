@@ -3,6 +3,7 @@ package com.everydaychef.main.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Recipe {
   private Double totalTime;
   private String[] ingredientLines;
 
-  @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
   private Set<Favorite> favorites = new HashSet<Favorite>();
 
   public Recipe(String label, String image, String source, String url, Double yield, Double totalTime,

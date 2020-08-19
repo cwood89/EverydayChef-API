@@ -62,9 +62,4 @@ public class Favorite {
     user.getFavorites().remove(this);
   }
 
-  @Override
-  public String toString() {
-    return "Favorite [id=" + id + ", recipe=" + recipe + ", user=" + user + "]";
-  }
-
 }
