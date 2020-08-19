@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Favorite {
@@ -21,22 +22,23 @@ public class Favorite {
   @ManyToMany(mappedBy = "userFavorites", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private Set<EndUser> user = new HashSet<EndUser>();
 
-  public String recipeId;
+  @OneToMany(mappedBy = "favorites")
+  public Recipe recipe;
 
-  public Favorite(Set<EndUser> user, String recipeId) {
+  public Favorite(Set<EndUser> user, Recipe recipe) {
     this.user = user;
-    this.recipeId = recipeId;
+    this.recipe = recipe;
   }
 
   public Favorite() {
   }
 
-  public String getRecipeId() {
-    return recipeId;
+  public Recipe getRecipe() {
+    return recipe;
   }
 
-  public void setRecipeId(String recipeId) {
-    this.recipeId = recipeId;
+  public void setRecipe(Recipe recipe) {
+    this.recipe = recipe;
   }
 
   public Set<EndUser> getUsers() {
@@ -59,7 +61,7 @@ public class Favorite {
 
   @Override
   public String toString() {
-    return "Favorite [id=" + id + ", recipeId=" + recipeId + ", user=" + user + "]";
+    return "Favorite [id=" + id + ", recipe=" + recipe + ", user=" + user + "]";
   }
 
 }

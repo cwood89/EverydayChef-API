@@ -3,7 +3,7 @@ package com.everydaychef.main.model;
 public class FavoriteRequest {
 
   private Long userId;
-  private String recipeId;
+  private Recipe recipe;
 
   public Long getUserId() {
     return userId;
@@ -13,21 +13,21 @@ public class FavoriteRequest {
     this.userId = userId;
   }
 
-  public String getRecipeId() {
-    return recipeId;
+  public Recipe getRecipe() {
+    return recipe;
   }
 
-  public void setRecipeId(String recipeId) {
-    this.recipeId = recipeId;
+  public void setRecipe(Recipe recipe) {
+    this.recipe = recipe;
   }
 
   public FavoriteRequest() {
   }
 
-  public FavoriteRequest(Long userId, String recipeId) {
+  public FavoriteRequest(Long userId, Recipe recipe) {
 
     this.userId = userId;
-    this.recipeId = recipeId;
+    this.recipe = recipe;
   }
 
 }

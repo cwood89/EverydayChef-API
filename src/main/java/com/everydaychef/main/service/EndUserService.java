@@ -118,7 +118,7 @@ public class EndUserService {
     if (findUser.isPresent()) {
       EndUser user = findUser.get();
       Favorite favorite = new Favorite();
-      favorite.setRecipeId(favoriteRequest.getRecipeId());
+      favorite.setRecipe(favoriteRequest.getRecipe());
       user.addFavorite(favorite);
       favoriteRepository.save(favorite);
       return new Response("success", "Favorite saved.", user);
@@ -128,35 +128,36 @@ public class EndUserService {
 
   }
 
-  public String[] getFavorites(Long userId) {
-    Optional<EndUser> endUser = endUserRepository.findById(userId);
-    if (endUser.isPresent()) {
-      EndUser user = endUser.get();
-      return user.getFavoriteIds();
-      // for each id call recipe search function
-      // that returns the recipe obj
-      // create an array of those objects and return that
-    }
-    return null;
-  }
+  // public String[] getFavorites(Long userId) {
+  // Optional<EndUser> endUser = endUserRepository.findById(userId);
+  // if (endUser.isPresent()) {
+  // EndUser user = endUser.get();
+  // return user.getFavoriteIds();
+  // // for each id call recipe search function
+  // // that returns the recipe obj
+  // // create an array of those objects and return that
+  // }
+  // return null;
+  // }
 
-  public Response removeFavorite(FavoriteRequest favoriteRequest) {
+  // public Response removeFavorite(FavoriteRequest favoriteRequest) {
 
-    Optional<EndUser> findUser = endUserRepository.findById(favoriteRequest.getUserId());
+  // Optional<EndUser> findUser =
+  // endUserRepository.findById(favoriteRequest.getUserId());
 
-    if (findUser.isPresent()) {
-      EndUser user = findUser.get();
-      for (Favorite fave : user.getFavorites()) {
+  // if (findUser.isPresent()) {
+  // EndUser user = findUser.get();
+  // for (Favorite fave : user.getFavorites()) {
 
-        if (fave.getRecipeId().equals(favoriteRequest.getRecipeId())) {
-          System.out.println(fave);
-          fave.getUsers().clear();
-          user.removeFavorite(fave);
-        }
-      }
-      endUserRepository.save(user);
-      return new Response("success", "Favorite removed.", user);
-    }
-    return new Response("error", "Invalid input", null);
-  }
+  // if (fave.getRecipeId().equals(favoriteRequest.getRecipeId())) {
+  // System.out.println(fave);
+  // fave.getUsers().clear();
+  // user.removeFavorite(fave);
+  // }
+  // }
+  // endUserRepository.save(user);
+  // return new Response("success", "Favorite removed.", user);
+  // }
+  // return new Response("error", "Invalid input", null);
+  // }
 }

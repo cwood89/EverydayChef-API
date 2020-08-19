@@ -121,14 +121,14 @@ public class EndUser {
     return userFavorites;
   }
 
-  public String[] getFavoriteIds() {
+  public Recipe[] getFavoriteRecipes() {
 
-    List<String> list = new ArrayList<String>();
+    List<Recipe> list = new ArrayList<Recipe>();
 
-    String[] arr = new String[this.userFavorites.size()];
+    Recipe[] arr = new Recipe[this.userFavorites.size()];
 
     for (Favorite fave : this.userFavorites) {
-      list.add(fave.getRecipeId());
+      list.add(fave.getRecipe());
     }
     arr = list.toArray(arr);
 
@@ -148,7 +148,7 @@ public class EndUser {
   @Override
   public String toString() {
     return "EndUser [email=" + email + ", firstName=" + firstName + ", id=" + id + ", lastName=" + lastName
-        + ", userFavorites=" + userFavorites.stream().map(Favorite::getRecipeId).collect(Collectors.toList())
+        + ", userFavorites=" + userFavorites.stream().map(Favorite::getRecipe).collect(Collectors.toList())
         + ", userName=" + userName + "]";
   }
 
