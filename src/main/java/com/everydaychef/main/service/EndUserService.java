@@ -174,6 +174,8 @@ public class EndUserService {
       for (Favorite fave : user.getFavorites()) {
 
         if (fave.getRecipe().equals(favoriteRequest.getRecipe())) {
+          System.out.println(fave.getRecipe());
+          System.out.println(favoriteRequest.getRecipe());
           System.out.println(fave);
           fave.getUsers().clear();
           user.removeFavorite(fave);
