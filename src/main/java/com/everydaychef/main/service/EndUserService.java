@@ -138,11 +138,17 @@ public class EndUserService {
   public Response saveFavorite(FavoriteRequest favoriteRequest) {
     EndUserDTO userDTO = null;
     Optional<EndUser> findUser = endUserRepository.findById(favoriteRequest.getUserId());
-
+    Recipe findRecipe = recipeRepository.findByUrl(favoriteRequest.getRecipe().getUrl());
     if (findUser.isPresent()) {
       EndUser user = findUser.get();
       Favorite favorite = new Favorite();
-      Recipe recipe = recipeRepository.save(favoriteRequest.getRecipe());
+      Recipe recipe = null;
+      if (findRecipe == null) {
+        recipe = recipeRepository.save(favoriteRequest.getRecipe());
+      } else {
+        recipe = findRecipe;
+      }
+
       favorite.setRecipe(recipe);
       user.addFavorite(favorite);
       favoriteRepository.save(favorite);
