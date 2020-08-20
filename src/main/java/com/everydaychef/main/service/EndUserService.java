@@ -177,8 +177,8 @@ public class EndUserService {
         for (Favorite fave : user.getFavorites()) {
 
           if (fave.getRecipe().getId().equals(favorite.getId())) {
-            favorite.getUsers().clear();
-            user.removeFavorite(favorite);
+            fave.getUsers().clear();
+            user.removeFavorite(fave);
           }
         }
         endUserRepository.save(user);
