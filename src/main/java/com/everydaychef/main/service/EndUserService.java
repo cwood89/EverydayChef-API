@@ -171,20 +171,20 @@ public class EndUserService {
 
     if (findUser.isPresent()) {
       EndUser user = findUser.get();
+      Optional<Favorite> getFavorite = favoriteRepository.findById(favoriteRequest.getRecipe().getId());
+      if (getFavorite.isPresent()) {
+        Favorite favorite = getFavorite.get();
+        for (Favorite fave : user.getFavorites()) {
 
-      for (Favorite fave : user.getFavorites()) {
-
-        if (fave.getRecipe().getId().equals(favoriteRequest.getRecipe().getId())) {
-          System.out.println(fave.getRecipe().getId());
-          System.out.println(favoriteRequest.getRecipe().getId());
-          System.out.println(fave);
-          fave.getUsers().clear();
-          user.removeFavorite(fave);
+          if (fave.getRecipe().getId().equals(favorite.getId())) {
+            favorite.getUsers().clear();
+            user.removeFavorite(favorite);
+          }
         }
+        endUserRepository.save(user);
+        userDTO = createDTO(user);
+        return new Response("success", "Favorite removed.", userDTO);
       }
-      endUserRepository.save(user);
-      userDTO = createDTO(user);
-      return new Response("success", "Favorite removed.", userDTO);
     }
     return new Response("error", "Invalid input", null);
   }
